@@ -2,17 +2,17 @@ self.onmessage = (e) => {
   const { data } = e;
   switch(data.action) {
     case 'bubbleSort': 
-      const dt = bubbleSort();
+      const dt = bubbleSort(data.range);
       self.postMessage(dt);
       break;
     default: break;
   }
 };
 
-const bubbleSort = () => {
+const bubbleSort = (range) => {
   var a = [];
   const beforePush = performance.now();
-  for (var i = 50000; i >= 0; i--) {
+  for (var i = range; i >= 0; i--) {
       a.push(i);
   };
   const afterPush = performance.now();

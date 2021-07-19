@@ -19,10 +19,10 @@ anime({
 });
 
 
-const bubbleSort = () => {
+const bubbleSort = (range) => {
   var a = [];
   const beforePush = performance.now();
-  for (var i = 50000; i >= 0; i--) {
+  for (var i = range; i >= 0; i--) {
       a.push(i);
   };
   const afterPush = performance.now();
@@ -51,13 +51,15 @@ const bubbleSort = () => {
 }
 
 $('.withWebWorker').on('click', function () {
+  const range = Number($('#range').val());
   showprogress();
-  myWorker.postMessage({action: 'bubbleSort'});
+  myWorker.postMessage({action: 'bubbleSort', range});
 });
 
 $('.withoutWebWorker').on('click', function () {
+  const range = Number($('#range').val());
   showprogress();
-  const dt = bubbleSort();
+  const dt = bubbleSort(range);
   loadResult(dt);
 });
 
